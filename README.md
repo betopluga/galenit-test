@@ -1,4 +1,4 @@
 # galenit-test
 Galenit Test
 
-tes
+it runs
