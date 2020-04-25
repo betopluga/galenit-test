@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  db-galenit:
+    image: postgres
+    environment:
+      POSTGRES_USER: galenit-user
+      POSTGRES_PASSWORD: "g@lenit"
+      POSTGRES_DB: galenit-dev
+    ports:
+      - "15432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - galenit-network
+    restart: unless-stopped
+  app-galenit:
+    build: backend
+    networks:
+      - galenit-network
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    depends_on:
+      - db-galenit
+
+networks: 
+  galenit-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+  app:
