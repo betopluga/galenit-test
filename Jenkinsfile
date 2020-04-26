@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'ls'
-                sh 'docker-compose -f docker-compose.yml up --abort-on-container-exit'
+                sh 'docker-compose -d -f docker-compose.yml up --abort-on-container-exit'
             }
         }
     }
