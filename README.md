@@ -1,4 +1,4 @@
 # galenit-test
 Galenit Test
 
-Docker
+Docker + Jenkins running
