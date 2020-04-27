@@ -14,7 +14,7 @@ services:
     networks:
       - galenit-network
     restart: unless-stopped
-  backend-galenit:
+  app-galenit:
     build: backend
     networks:
       - galenit-network
