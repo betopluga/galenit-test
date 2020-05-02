@@ -8,6 +8,7 @@ pipeline {
    
     environment {
         pom = readMavenPom file: 'backend/pom.xml'
+        version_backend = "${pom.version}"
         file = "backend-${pom.version}"
     }
 
@@ -38,7 +39,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'docker-compose down --remove-orphans'
-                sh 'docker-compose up -d --build'
+                sh 'docker-compose build --build-arg VERSION=' + env.version_backend
+                sh 'docker-compose up -d'
             }
         }
     }
