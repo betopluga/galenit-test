@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  db-galenit:
+  database:
     image: postgres
     environment:
       POSTGRES_USER: galenit-user
@@ -14,7 +14,7 @@ services:
     networks:
       - galenit-network
     restart: unless-stopped
-  app-galenit:
+  backend:
     build: backend
     networks:
       - galenit-network
@@ -24,7 +24,18 @@ services:
       - 8081:8080
     restart: unless-stopped
     depends_on:
-      - db-galenit
+      - database
+  frontend:
+    build: frontend
+    networks:
+      - galenit-network
+    expose:
+      - 8082
+    ports: 
+      - 8082:8080
+    restart: unless-stopped
+    depends_on:
+      - backend
 
 networks: 
   galenit-network:
@@ -32,4 +43,3 @@ networks:
 
 volumes:
   dbdata:
-  app:
