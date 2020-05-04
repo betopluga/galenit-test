@@ -1,4 +1,4 @@
 # galenit-test
 Galenit Test
 
-Docker + Jenkins running
+VueJS + Spring Boot + Docker + Jenkins running
